@@ -1,0 +1,17 @@
+name: PR probe
+
+on:
+  pull_request:
+    paths:
+      - ci/**
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run harmless PR-controlled marker
+        run: bash ci/probe.sh
